@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
-//import 'dart:math';
 
 import 'package:dungeon_creator/room.dart';
 import 'package:dungeon_creator/dungeon_creator.dart';
@@ -9,7 +8,7 @@ import 'package:dungeon_creator/dungeon_creator.dart';
 Future<Null> main() async {
   StageOptions options = new StageOptions()
     ..backgroundColor = Color.Black
-    ..renderEngine = RenderEngine.WebGL;
+    ..renderEngine = RenderEngine.Canvas2D;
 
   var canvas = html.querySelector('#stage');
   var stage = new Stage(canvas, width: 1280, height: 800, options: options);
@@ -31,8 +30,8 @@ Future<Null> main() async {
 
   var connection = new RoomConnection(room1, room2);
   var connection2 = new RoomConnection(room3, room2);
-  var connection3 = new RoomConnection(room4, room2);
-  var connection4 = new RoomConnection(room5, room2);
+  var connection3 = new RoomConnection(room2, room4);
+  var connection4 = new RoomConnection(room2, room5);
   var connection5 = new RoomConnection(room2, room6);
   new Draw(new RenderDungeon())
     ..draw_room(room1, stage)

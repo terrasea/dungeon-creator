@@ -236,7 +236,7 @@ class RenderDungeon {
             connection.room1.y
         )
         ..graphics.lineTo(
-            connection.room2.x + connection.room1.width / 2 - 10,
+            connection.room2.x + connection.room2.width / 2 - 10,
             connection.room2.y + connection.room2.height
         )
         ..graphics.lineTo(
@@ -246,6 +246,33 @@ class RenderDungeon {
         ..graphics.lineTo(
             connection.room1.x + connection.room1.width / 2 + 10,
             connection.room1.y
+        )
+        ..graphics.closePath()
+        ..graphics.fillColor(fillColour)
+        ..graphics.strokeColor(colour)
+      ;
+    } else if(
+    connection.room2.y > connection.room1.y &&
+        !(connection.room2.x + connection.room2.width < connection.room1.x)
+    ) {
+      print('3f');
+      return _shape
+        ..graphics.beginPath()
+        ..graphics.moveTo(
+            connection.room2.x + connection.room2.width / 2 - 10,
+            connection.room2.y
+        )
+        ..graphics.lineTo(
+            connection.room1.x + connection.room1.width / 2 - 10,
+            connection.room1.y + connection.room1.height
+        )
+        ..graphics.lineTo(
+            connection.room1.x + connection.room1.width / 2 + 10,
+            connection.room1.y + connection.room1.height
+        )
+        ..graphics.lineTo(
+            connection.room2.x + connection.room2.width / 2 + 10,
+            connection.room2.y
         )
         ..graphics.closePath()
         ..graphics.fillColor(fillColour)
