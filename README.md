@@ -1,6 +1,2 @@
-# untitled2
-
-A simple [StageXL](http://www.stagexl.org/) app.
-
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+# dungeon-creator
+An experiment in my spare time, to create a dungeon using StageXL. I make no guarantees of good coding practice
