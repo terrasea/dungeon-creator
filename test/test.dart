@@ -2,7 +2,7 @@ library dungeon_creator_test;
 
 import 'package:test/test.dart';
 
-import 'package:dungeon_creator/room.dart';
+import 'package:dungeon_creator/backend.dart';
 
 void main() {
   group('[room]', () {
@@ -77,6 +77,43 @@ void main() {
 
     test('get_connection_type returns int', () {
       expect(rand_connection_type(), new isInstanceOf<int>());
+    });
+  });
+
+  group('random dungeon', () {
+    Set<Room> rooms;
+    var room_count = 10;
+    var dungeon_width = 1000;
+    var dungeon_height = 1000;
+    setUp(() {
+      rooms = generate_rooms(room_count, dungeon_width, dungeon_height);
+    });
+
+    tearDown(() {
+      rooms = null;
+    });
+
+    test('ganerate random rooms of certain number', () {
+      expect(rooms.length, room_count);
+    });
+
+    test('2 rooms overlap', () {
+      Room room = new Room(681, 409, 101, 101);
+      Room room2 = new Room(740, 416, 101, 101);
+
+      expect(overlap(room, room2), isTrue);
+    });
+
+    test('room does overlap a room in a list', () {
+      Room room = new Room(681, 409, 101, 101);
+      Room room2 = new Room(740, 416, 101, 101);
+      Room room3 = new Room(900, 416, 101, 101);
+      List roomList = new List()
+        ..add(room2)
+        ..add(room3)
+      ;
+
+      expect(overlaps_any(room, roomList), isTrue);
     });
   });
 }

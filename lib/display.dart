@@ -312,6 +312,9 @@ class Draw {
         colour: colour,
         fillColour: fillColour
     );
+    rect.addEventListener('click', (e) {
+      print ('${room.x}, ${room.y}, ${room.width}, ${room.height}');
+    });
     stage.addChild(rect);
   }
   

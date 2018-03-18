@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
 
-import 'package:dungeon_creator/room.dart';
+import 'package:dungeon_creator/backend.dart';
 import 'package:dungeon_creator/dungeon_creator.dart';
 
 Future<Null> main() async {
@@ -21,33 +21,37 @@ Future<Null> main() async {
 
   await resourceManager.load();
 
-  var room1 = new LabeledRoom('1', 10, 10, 101, 101);
-  var room2 = new LabeledRoom('2', 600, 10, 101, 101);
-  var room3 = new LabeledRoom('3', 100, 300, 101, 101);
-  var room4 = new LabeledRoom('4', 500, 300, 101, 101);
-  var room5 = new LabeledRoom('5', 900, 300, 101, 101);
-  var room6 = new LabeledRoom('6', 900, 0, 101, 101);
+  print(stage.bounds.width);
+  Set<Room> rooms = generate_rooms(10, 1280, 800);
+  Draw draw = new Draw(new RenderDungeon());
+  rooms.forEach((room) {
+    draw.draw_room(room, stage);
+  });
 
-  var connection = new RoomConnection(room1, room2);
-  var connection2 = new RoomConnection(room3, room2);
-  var connection3 = new RoomConnection(room2, room4);
-  var connection4 = new RoomConnection(room2, room5);
-  var connection5 = new RoomConnection(room2, room6);
-  new Draw(new RenderDungeon())
-    ..draw_room(room1, stage)
-    ..draw_room(room2, stage)
-    ..draw_room(room3, stage)
-    ..draw_room(room4, stage)
-    ..draw_room(room5, stage)
-    ..draw_room(room6, stage)
-    ..draw_corridoor(connection, stage,
-        colour: Color.White, fillColour: Color.Aqua)
-    ..draw_corridoor(connection2, stage,
-        colour: Color.Blue, fillColour: Color.Green)
-    ..draw_corridoor(connection3, stage,
-        colour: Color.Purple, fillColour: Color.MediumPurple)
-    ..draw_corridoor(connection4, stage,
-        colour: Color.Gray, fillColour: Color.GreenYellow)
-    ..draw_corridoor(connection5, stage,
-        colour: Color.Gray, fillColour: Color.Yellow);
+//  var connection = new RoomConnection(room1, room2);
+//  var connection2 = new RoomConnection(room3, room2);
+//  var connection3 = new RoomConnection(room2, room4);
+//  var connection4 = new RoomConnection(room2, room5);
+//  var connection5 = new RoomConnection(room2, room6);
+//  var connection6 = new RoomConnection(room4, room7);
+//  new Draw(new RenderDungeon())
+//    ..draw_room(room1, stage)
+//    ..draw_room(room2, stage)
+//    ..draw_room(room3, stage)
+//    ..draw_room(room4, stage)
+//    ..draw_room(room5, stage)
+//    ..draw_room(room6, stage)
+//    ..draw_room(room7, stage)
+//    ..draw_corridoor(connection, stage,
+//        colour: Color.White, fillColour: Color.Aqua)
+//    ..draw_corridoor(connection2, stage,
+//        colour: Color.Blue, fillColour: Color.Green)
+//    ..draw_corridoor(connection3, stage,
+//        colour: Color.Purple, fillColour: Color.MediumPurple)
+//    ..draw_corridoor(connection4, stage,
+//        colour: Color.Gray, fillColour: Color.GreenYellow)
+//    ..draw_corridoor(connection5, stage,
+//        colour: Color.Gray, fillColour: Color.GreenYellow)
+//    ..draw_corridoor(connection6, stage,
+//        colour: Color.Gray, fillColour: Color.Yellow);
 }
