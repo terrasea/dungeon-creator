@@ -23,9 +23,13 @@ Future<Null> main() async {
 
   print(stage.bounds.width);
   Set<Room> rooms = generate_rooms(10, 1280, 800);
+  List<RoomConnection> connections = generate_connections(rooms, 10);
   Draw draw = new Draw(new RenderDungeon());
   rooms.forEach((room) {
     draw.draw_room(room, stage);
+  });
+  connections.forEach((connection) {
+    draw.draw_corridoor(connection, stage);
   });
 
 //  var connection = new RoomConnection(room1, room2);

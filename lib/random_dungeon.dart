@@ -7,9 +7,8 @@ Set<Room> generate_rooms(count, dungeon_width, dungeon_height,
   List<Room> rooms = new List<Room>.generate(count, (index) {
     Room room;
     do {
-      room =
-          new LabeledRoom('$index', rand.nextInt(dungeon_width - room_width),
-              rand.nextInt(dungeon_height - room_height), room_width, room_height);
+      room = new LabeledRoom('$index', rand.nextInt(dungeon_width - room_width),
+          rand.nextInt(dungeon_height - room_height), room_width, room_height);
     } while (overlaps_any(room, generated_rooms));
     generated_rooms.add(room);
 
@@ -17,6 +16,14 @@ Set<Room> generate_rooms(count, dungeon_width, dungeon_height,
   });
 
   return new Set<Room>.from(rooms);
+}
+
+List<RoomConnection> generate_connections(Set<Room> rooms, count) {
+  Random rand = new Random();
+  return new List.generate(count, (index) {
+    return new RoomConnection(rooms.elementAt(rand.nextInt(rooms.length)),
+        rooms.elementAt(rand.nextInt(rooms.length)));
+  });
 }
 
 bool overlaps_any(value, List taken) {
